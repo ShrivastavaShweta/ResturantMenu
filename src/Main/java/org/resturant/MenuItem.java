@@ -1,6 +1,7 @@
 package Main.java.org.resturant;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class MenuItem {
     private String name;
@@ -50,13 +51,30 @@ public class MenuItem {
         this.category = category;
     }
 
-//    public boolean isNew() {
-//        return isNew;
-//    }
-//
-//    public void setNew(boolean aNew) {
-//        isNew = aNew;
-//    }
+    public Date getDateAdded() {
+        return dateAdded;
+    }
 
+    @Override
+    public String toString() {
+        String newText = isNew() ? " - NEW!" : "";
+        return  name + newText + "\n" + description + "\n" + category.toUpperCase() + " | $" + price;
+    }
 
+    @Override
+    public boolean equals(Object objectToBeCompared) {
+        if (this == objectToBeCompared) return true;
+        if (objectToBeCompared == null || getClass() != objectToBeCompared.getClass()) return false;
+        MenuItem otherItem = (MenuItem) objectToBeCompared;
+        return this.name.equals(otherItem.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    boolean isNew(){
+        return true;
+    }
 }
